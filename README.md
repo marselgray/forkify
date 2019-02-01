@@ -11,7 +11,11 @@
 ## JavaScript Concepts used:
 
 
-# Modern Webpacks Used: 
+## Model Controller View:
+
+![](mcv.png)
+
+## Modern Webpacks Used: 
 * webpack
 * babel
 
