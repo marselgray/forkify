@@ -2,18 +2,20 @@
 
 
 
-## Design
+## Design:
 
-## Planning
+## Planning:
 
-## Execution
+## Execution:
 
 ## JavaScript Concepts used:
+
+
+# Modern Webpacks Used: 
 * webpack
 * babel
 
-
-## Final Product
+## Final Product:
 
 
 
