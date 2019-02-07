@@ -13,8 +13,7 @@ const state = {};
 const controlSearch = async () => {
     // 1. Get query from view
     const query = searchView.getInput();
-    console.log(query);
-    
+        
     if (query) {
         // 2. New search object and add to state
         state.search = new Search(query)
@@ -38,3 +37,12 @@ elements.searchForm.addEventListener('submit', e => {
     controlSearch();
 });
 
+elements.searchResPages.addEventListener('click', e => {
+    //https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
+    const btn = e.target.closest('.btn-inline');
+    if (btn) {
+        const goToPage = parseInt(btn.dataset.goto, 10);
+        searchView.clearResults();
+        searchView.renderResults(state.search.result, goToPage);
+    }
+});

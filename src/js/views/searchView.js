@@ -10,6 +10,7 @@ export const clearInput = () => {
 //clear previous results
 export const clearResults = () => {
     elements.searchResList.innerHTML = '';
+    elements.searchResPages.innerHTML = '';
 }
 /*
 Pasta with totato and spinach
@@ -52,7 +53,44 @@ const renderRecipe = recipe => {
     elements.searchResList.insertAdjacentHTML('beforeend', markup)
 };
 
-export const renderResults = recipes => {
-    console.log(recipes);
-    recipes.forEach(renderRecipe);
+// type can be previous or next
+const createButton = (page, type) => `
+    <button class="btn-inline results__btn--${type}" data-goto=${type === 'prev' ? page - 1 : page + 1}>
+        <span>Page ${type === 'prev' ? page - 1 : page + 1}</span>
+        <svg class="search__icon">
+            <use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
+        </svg>
+    </button>
+`;
+
+const renderButtons  = (page, numResults, resPerPage) => {
+    // math.ceil always rounds up! 
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil
+    const pages = Math.ceil(numResults / resPerPage);
+    let button;
+    if (page  === 1 && pages > 1){
+        // only button to go to next page
+        button = createButton(page, 'next');
+    } else if (page < pages){
+        // both buttons
+        button = `
+            ${createButton(page, 'prev')}
+            ${createButton(page, 'next')}
+        `        
+    } else if (page === pages && pages > 1) {
+        // only button to go to previous page
+        button = createButton(page, 'prev');
+    } 
+    elements.searchResPages.insertAdjacentHTML('afterbegin', button);
+};
+
+export const renderResults = (recipes, page = 1, resPerPage = 10) => {
+    //render results of current page
+    const start = (page - 1) * resPerPage;
+    const end = page * resPerPage;
+
+    recipes.slice(start, end).forEach(renderRecipe);
+
+    //render pagination buttons
+    renderButtons(page, recipes.length, resPerPage);
 };
