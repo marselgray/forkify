@@ -1,6 +1,9 @@
 # Forkify 
 
+This is a JavaScript project that pulls from the food2fork API.
+API Key is like a password to make requests from an Application Programming Interface (API). 
 
+Read more at https://www.food2fork.com/about/api
 
 ## Design:
 
@@ -9,7 +12,8 @@
 ## Execution:
 
 ## JavaScript Concepts used:
-
+* ES6 Modules
+* Application State - 
 
 ## Model Controller View:
 
