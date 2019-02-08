@@ -16,7 +16,7 @@ const state = {};
 const controlSearch = async () => {
     // 1. Get query from view
     const query = searchView.getInput();
-        
+    
     if (query) {
         // 2. New search object and add to state
         state.search = new Search(query)
@@ -34,7 +34,7 @@ const controlSearch = async () => {
             clearLoader();
             searchView.renderResults(state.search.result);
         } catch (err) {
-            alert('Something went wrong with the search...');
+            console.log(err);
             clearLoader();
         }
     }
@@ -43,6 +43,7 @@ elements.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     controlSearch();
 });
+
 
 elements.searchResPages.addEventListener('click', e => {
     //https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
@@ -67,9 +68,11 @@ const controlRecipe = async () => {
         // 2. create new recipe object
         state.recipe = new Recipe(id);
 
+
         try {
-            // 3. get recipe data
+            // 3. get recipe data and parse ingredients
             await state.recipe.getRecipe();
+            state.recipe.parseIngredients();
 
             // 4. calculate servings and cook time
             state.recipe.calcTime();
@@ -78,7 +81,7 @@ const controlRecipe = async () => {
             // 5. render recipe
             console.log(state.recipe);
         } catch (err) {
-            alert('Error processing recipe');
+            console.log(err);
         }        
     }
 }
