@@ -1,7 +1,30 @@
 import {elements} from './base.js'
+import {Fraction} from 'fractional';
 
 export const clearRecipe = () => {
     elements.recipe.innerHTML = '';
+};
+
+// converts deciminals into fractions
+// https://www.npmjs.com/package/fractional
+const formatCount = count => {
+	if (count){
+		const [int, dec] = count.toString().split('.').map(el => parseInt(el, 10));
+		
+		// in no decimal 
+		if (!dec) return count;
+		
+		// count is 0.5 --> 1/2 
+		if (int === 0){
+			const fr = new Fraction(count);
+			return `${fr.numerator}/${fr.denominator}`;
+		} else { 		
+			// count is 2.5 --> 2 1/2
+			const fr = new Fraction(count  - int);
+			return `${int} ${fr.numerator}/${fr.denominator}`;
+		}
+	}
+	return '?';
 };
 
 const createIngredient = ingredient => `
@@ -9,7 +32,7 @@ const createIngredient = ingredient => `
         <svg class="recipe__icon">
             <use href="img/icons.svg#icon-check"></use>
         </svg>
-        <div class="recipe__count">${ingredient.count}</div>
+        <div class="recipe__count">${formatCount(ingredient.count)}</div>
         <div class="recipe__ingredient">
             <span class="recipe__unit">${ingredient.unit}</span>
         ${ingredient.ingredient}
