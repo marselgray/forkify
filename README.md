@@ -7,9 +7,11 @@ Read more at https://www.food2fork.com/about/api
 
 ## Design:
 
+
 ## Planning:
 
 ## Execution:
+The execution of this project took longer than expected as I did this as a personal project for continuing education. 
 
 ## JavaScript Concepts used:
 * ES6 Modules
@@ -25,6 +27,7 @@ Read more at https://www.food2fork.com/about/api
 
 ## Final Product:
 
+![](project.jpg)
 
 
 ### Future Developers:
