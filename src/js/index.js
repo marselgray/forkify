@@ -15,8 +15,6 @@ import Likes from './models/likes.js';
 - Liked recipes
 */
 const state = {};
-window.state = state;
-
 
 //SEARCH CONTROLLER
 const controlSearch = async () => {
@@ -205,6 +203,4 @@ elements.recipe.addEventListener('click', e => {
 		// like controller
 		controlLike();
 	}
-})
-
-window.l = new List();
+});
