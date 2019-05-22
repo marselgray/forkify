@@ -5,10 +5,8 @@ API Key is like a password to make requests from an Application Programming Inte
 
 Read more at https://www.food2fork.com/about/api
 
-## Design:
-
-
 ## Planning:
+I am a big fan of taking big projects and splitting them up into small, easily managable components. This project continues that ideology by beginning with the framework and configuration setup. Then moving into each functionality of MVP to continue to build piece after piece till completation. 
 
 ## Execution:
 The execution of this project took longer than expected as I did this as a personal project for continuing education. 
